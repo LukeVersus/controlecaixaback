@@ -1,6 +1,7 @@
 package com.omega.controlecaixa.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -16,15 +17,18 @@ public class Movimentacao {
     @SequenceGenerator(name = "seq_movimentacao", sequenceName = "seq_movimentacao", schema = "omega", allocationSize = 1)
     private Long id;
 
+    @NotEmpty(message = "Data é obrigatória.")
     private LocalDate data;
 
+    @NotEmpty(message = "Tipo é obrigatório.")
     private String tipo;
 
     @ManyToOne
     @JoinColumn(name = "caixa_id")
-    @NotNull
+    @NotNull(message = "Caixa é obrigatório.")
     private Caixa caixa;
 
+    @NotEmpty(message = "Descrição é obrigatória.")
     private String descricao;
 
     private BigDecimal valor = BigDecimal.ZERO;
