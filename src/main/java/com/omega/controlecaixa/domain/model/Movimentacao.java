@@ -1,6 +1,7 @@
 package com.omega.controlecaixa.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ public class Movimentacao {
 
     @ManyToOne
     @JoinColumn(name = "caixa_id")
+    @NotNull
     private Caixa caixa;
 
     private String descricao;
