@@ -2,6 +2,7 @@ package com.omega.controlecaixa.domain.service.interfaces;
 
 import com.omega.controlecaixa.domain.model.Movimentacao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface MovimentacaoService {
@@ -10,6 +11,7 @@ public interface MovimentacaoService {
     List<Movimentacao> movimentacoesPorCaixaPorMes(Long idCaixa, Integer ano, Integer mes);
     Movimentacao recuperarMovimentacao(Long id);
     Movimentacao salvarMovimentacao(Movimentacao movimentacao);
+    Movimentacao alterarValor(Long id, BigDecimal valor);
     void alterarMovimentacao(Long id, Movimentacao movimentacao);
     void excluirMovimentacao(Long id);
 }

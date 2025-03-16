@@ -7,6 +7,7 @@ import com.omega.controlecaixa.repositories.MovimentacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -51,6 +52,15 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 
     @Override
     public Movimentacao salvarMovimentacao(Movimentacao movimentacao) {
+        return repository.save(movimentacao);
+    }
+
+    @Override
+    public Movimentacao alterarValor(Long id, BigDecimal valor) {
+        Movimentacao movimentacao = repository.findById(id).orElseThrow(
+                () -> new RuntimeException("Movimentação não encontrada.")
+        );
+        movimentacao.setValor(valor);
         return repository.save(movimentacao);
     }
 
