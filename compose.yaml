@@ -1,4 +1,15 @@
 services:
+  api:
+    build: .
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://172.18.0.2:5432/controlecaixa
+        SPRING_DATASOURCE_USERNAME: postgres
+        SPRING_DATASOURCE_PASSWORD: 80lvcr58
   postgres:
     image: 'postgres:latest'
     environment:

@@ -1,6 +1,7 @@
 FROM openjdk:17-oracle
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} ControlecaixaApplication.jar
-ENTRYPOINT ["java","-jar","/ControlecaixaApplication.jar"]
+VOLUME /tmp
+ADD target/controlecaixa-0.0.1-SNAPSHOT.jar controlecaixa-0.0.1-SNAPSHOT.jar
+WORKDIR /app
+COPY target/controlecaixa-0.0.1-SNAPSHOT.jar /app
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/controlecaixa-0.0.1-SNAPSHOT.jar"]
