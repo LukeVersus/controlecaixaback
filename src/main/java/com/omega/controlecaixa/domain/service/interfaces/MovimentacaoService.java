@@ -2,7 +2,6 @@ package com.omega.controlecaixa.domain.service.interfaces;
 
 import com.omega.controlecaixa.domain.model.Movimentacao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface MovimentacaoService {

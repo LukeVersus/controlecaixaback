@@ -1,6 +1,5 @@
 package com.omega.controlecaixa.support;
 
-import com.omega.controlecaixa.domain.model.Usuario;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
