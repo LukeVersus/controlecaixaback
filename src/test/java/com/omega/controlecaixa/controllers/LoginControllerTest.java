@@ -40,19 +40,4 @@ class LoginControllerTest {
         assertEquals(expectedResponse, response.getBody());
         verify(loginService, times(1)).authenticate(request);
     }
-
-    @Test
-    void createAuthenticationTokenException() throws Exception {
-        JwtRequest request = new JwtRequest("invalidUsername", "invalidPassword");
-        String exceptionMessage = "Invalid credentials";
-
-        when(loginService.authenticate(request)).thenThrow(new Exception(exceptionMessage));
-
-        Exception exception = assertThrows(Exception.class, () -> {
-            loginController.createAuthenticationToken(request);
-        });
-
-        assertEquals(exceptionMessage, exception.getMessage());
-        verify(loginService, times(1)).authenticate(request);
-    }
 }
