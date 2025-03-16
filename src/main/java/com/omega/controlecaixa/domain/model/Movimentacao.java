@@ -3,7 +3,9 @@ package com.omega.controlecaixa.domain.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,6 +13,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "movimentacao", schema = "omega")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movimentacao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_movimentacao")
