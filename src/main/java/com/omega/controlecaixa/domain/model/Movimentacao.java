@@ -17,7 +17,7 @@ public class Movimentacao {
     @SequenceGenerator(name = "seq_movimentacao", sequenceName = "seq_movimentacao", schema = "omega", allocationSize = 1)
     private Long id;
 
-    @NotEmpty(message = "Data é obrigatória.")
+    @NotNull(message = "Data é obrigatória.")
     private LocalDate data;
 
     @NotEmpty(message = "Tipo é obrigatório.")
