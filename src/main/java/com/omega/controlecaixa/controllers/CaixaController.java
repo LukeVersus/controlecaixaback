@@ -17,38 +17,33 @@ public class CaixaController {
     CaixaService service;
 
     @GetMapping
-    ResponseEntity<List<Caixa>> caixasDisponiveis(@RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<List<Caixa>> caixasDisponiveis() {
         return ResponseEntity.ok().body(service.caixasDisponiveis());
     }
 
     @GetMapping("{id}")
-    ResponseEntity<Caixa> recuperarCaixa(@PathVariable("id") Long id,
-                                         @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<Caixa> recuperarCaixa(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(service.recuperarCaixa(id));
     }
 
     @PostMapping
-    ResponseEntity<Caixa> salvarCaixa(@RequestBody Caixa caixa,
-                                      @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<Caixa> salvarCaixa(@RequestBody Caixa caixa) {
         return ResponseEntity.ok().body(service.salvarCaixa(caixa));
     }
 
     @PutMapping("{id}/saldo-inicial")
-    ResponseEntity<Caixa> alterarSaldoInicial(@PathVariable("id") Long id, @RequestBody BigDecimal saldoInicial,
-                                              @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<Caixa> alterarSaldoInicial(@PathVariable("id") Long id, @RequestBody BigDecimal saldoInicial) {
         return ResponseEntity.ok().body(service.alterarSaldoInicial(id, saldoInicial));
     }
 
     @PutMapping("{id}")
-    ResponseEntity<String> alterarCaixa(@PathVariable("id") Long id, @RequestBody Caixa caixa,
-                                        @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<String> alterarCaixa(@PathVariable("id") Long id, @RequestBody Caixa caixa) {
         service.alterarCaixa(id, caixa);
         return ResponseEntity.ok().body("Alterado com sucesso.");
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<String> excluirCaixa(@PathVariable("id") Long id,
-                                        @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<String> excluirCaixa(@PathVariable("id") Long id) {
         service.excluirCaixa(id);
         return ResponseEntity.ok().body("Excluído com sucesso.");
     }

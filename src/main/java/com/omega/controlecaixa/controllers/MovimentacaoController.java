@@ -17,16 +17,14 @@ public class MovimentacaoController {
     MovimentacaoService service;
 
     @GetMapping("/caixa/{idCaixa}")
-    public ResponseEntity<List<Movimentacao>> movimentacoesPorCaixa(@PathVariable Long idCaixa,
-                                                                    @RequestHeader(name = "Authorization", required = true) String token) {
+    public ResponseEntity<List<Movimentacao>> movimentacoesPorCaixa(@PathVariable Long idCaixa) {
         return ResponseEntity.ok().body(service.movimentacoesPorCaixa(idCaixa));
     }
 
     @GetMapping("/caixa/{idCaixa}/ano/{ano}")
     public ResponseEntity<List<Movimentacao>> movimentacoesPorCaixaPorAno(
             @PathVariable Long idCaixa,
-            @PathVariable Integer ano,
-            @RequestHeader(name = "Authorization", required = true) String token) {
+            @PathVariable Integer ano) {
         return ResponseEntity.ok().body(service.movimentacoesPorCaixaPorAno(idCaixa, ano));
     }
 
@@ -34,41 +32,35 @@ public class MovimentacaoController {
     public ResponseEntity<List<Movimentacao>> movimentacoesPorCaixaPorMes(
             @PathVariable Long idCaixa,
             @PathVariable Integer ano,
-            @PathVariable Integer mes,
-            @RequestHeader(name = "Authorization", required = true) String token) {
+            @PathVariable Integer mes) {
         return ResponseEntity.ok().body(service.movimentacoesPorCaixaPorMes(idCaixa, ano, mes));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movimentacao> recuperarMovimentacao(@PathVariable Long id,
-                                                              @RequestHeader(name = "Authorization", required = true) String token) {
+    public ResponseEntity<Movimentacao> recuperarMovimentacao(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.recuperarMovimentacao(id));
     }
 
     @PostMapping
-    public ResponseEntity<Movimentacao> salvarMovimentacao(@RequestBody Movimentacao movimentacao,
-                                                           @RequestHeader(name = "Authorization", required = true) String token) {
+    public ResponseEntity<Movimentacao> salvarMovimentacao(@RequestBody Movimentacao movimentacao) {
         return ResponseEntity.ok().body(service.salvarMovimentacao(movimentacao));
     }
 
     @PutMapping("{id}/saldo-inicial")
-    ResponseEntity<Movimentacao> alterarSaldoInicial(@PathVariable("id") Long id, @RequestBody BigDecimal valor,
-                                                     @RequestHeader(name = "Authorization", required = true) String token) {
+    ResponseEntity<Movimentacao> alterarSaldoInicial(@PathVariable("id") Long id, @RequestBody BigDecimal valor) {
         return ResponseEntity.ok().body(service.alterarValor(id, valor));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> alterarMovimentacao(
             @PathVariable Long id,
-            @RequestBody Movimentacao movimentacao,
-            @RequestHeader(name = "Authorization", required = true) String token) {
+            @RequestBody Movimentacao movimentacao) {
         service.alterarMovimentacao(id, movimentacao);
         return ResponseEntity.ok().body("Alterado com sucesso.");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> excluirMovimentacao(@PathVariable Long id,
-                                                      @RequestHeader(name = "Authorization", required = true) String token) {
+    public ResponseEntity<String> excluirMovimentacao(@PathVariable Long id) {
         service.excluirMovimentacao(id);
         return ResponseEntity.ok().body("Excluído com sucesso.");
     }
