@@ -51,16 +51,11 @@ public class CaixaServiceImpl implements CaixaService {
     @Override
     @Transactional
     public void alterarCaixa(Long id, Caixa caixa) {
-        Caixa caixaAtual = repository.findById(id).orElseThrow(
+        repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Caixa não encontrado")
         );
-        if (!caixa.getDescricao().equals(caixaAtual.getDescricao())) {
-            caixaAtual.setDescricao(caixa.getDescricao());
-        }
-        if (caixa.getSaldoInicial().equals(caixaAtual.getSaldoInicial())) {
-            caixaAtual.setSaldoInicial(caixa.getSaldoInicial());
-        }
-        repository.save(caixaAtual);
+        caixa.setId(id);
+        repository.save(caixa);
     }
 
     @Override
