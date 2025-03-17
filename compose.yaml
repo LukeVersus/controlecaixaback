@@ -12,6 +12,7 @@ services:
         SPRING_DATASOURCE_PASSWORD: 80lvcr58
   postgres:
     image: 'postgres:latest'
+    restart: always
     environment:
       - 'POSTGRES_DB=controlecaixa'
       - 'POSTGRES_PASSWORD=80lvcr58'

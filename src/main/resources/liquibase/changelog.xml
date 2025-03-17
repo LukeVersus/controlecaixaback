@@ -9,4 +9,73 @@
             CREATE SCHEMA IF NOT EXISTS omega;
         </sql>
     </changeSet>
+
+    <changeSet id="1" author="unknown">
+        <sql>
+            CREATE SEQUENCE IF NOT EXISTS omega.seq_usuario
+            START WITH 1
+            INCREMENT BY 1
+            NO MINVALUE
+            NO MAXVALUE
+            CACHE 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="unknown">
+        <sql>
+            CREATE TABLE IF NOT EXISTS omega.usuario (
+            id BIGINT PRIMARY KEY DEFAULT NEXTVAL('omega.seq_usuario'),
+            nome VARCHAR(255) NOT NULL,
+            username VARCHAR(255) NOT NULL,
+            password VARCHAR(255) NOT NULL,
+            ativo BOOLEAN DEFAULT TRUE,
+            email VARCHAR(255) CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="unknown">
+        <sql>
+            CREATE SEQUENCE IF NOT EXISTS omega.seq_caixa
+            START WITH 1
+            INCREMENT BY 1
+            NO MINVALUE
+            NO MAXVALUE
+            CACHE 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="unknown">
+        <sql>
+            CREATE TABLE IF NOT EXISTS omega.caixa (
+            id BIGINT PRIMARY KEY DEFAULT NEXTVAL('omega.seq_caixa'),
+            descricao VARCHAR(255) NOT NULL,
+            saldo_inicial NUMERIC(19, 2) DEFAULT 0
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="unknown">
+        <sql>
+            CREATE SEQUENCE IF NOT EXISTS omega.seq_movimentacao
+            START WITH 1
+            INCREMENT BY 1
+            NO MINVALUE
+            NO MAXVALUE
+            CACHE 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="6" author="unknown">
+        <sql>
+            id BIGINT PRIMARY KEY DEFAULT NEXTVAL('omega.seq_movimentacao'),
+            data DATE NOT NULL,
+            tipo VARCHAR(255) NOT NULL,
+            caixa_id BIGINT NOT NULL,
+            descricao VARCHAR(255) NOT NULL,
+            valor NUMERIC(19, 2) DEFAULT 0,
+
+            CONSTRAINT fk_caixa FOREIGN KEY (caixa_id) REFERENCES omega.caixa (id)
+        </sql>
+    </changeSet>
 </databaseChangeLog>
