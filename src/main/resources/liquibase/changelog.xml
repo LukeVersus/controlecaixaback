@@ -68,6 +68,7 @@
 
     <changeSet id="6" author="unknown">
         <sql>
+            CREATE TABLE IF NOT EXISTS omega.movimentacao (
             id BIGINT PRIMARY KEY DEFAULT NEXTVAL('omega.seq_movimentacao'),
             data DATE NOT NULL,
             tipo VARCHAR(255) NOT NULL,
@@ -76,6 +77,7 @@
             valor NUMERIC(19, 2) DEFAULT 0,
 
             CONSTRAINT fk_caixa FOREIGN KEY (caixa_id) REFERENCES omega.caixa (id)
+            );
         </sql>
     </changeSet>
 </databaseChangeLog>
